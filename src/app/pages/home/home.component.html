@@ -1,1 +1,34 @@
-<br><br><br><br><br><br><p>home works!</p>
+<div class="home-container">
+    <form [formGroup]="longUrlForm" (ngSubmit)="onSubmit()">
+        <h2>Shorten your url</h2>
+
+        <div>
+            <label for="longUrl">Long URL:</label>
+            <input id="longUrl" type="text" formControlName="longUrl" />
+            <span class="error"
+                *ngIf="longUrlForm.controls['longUrl'].value && longUrlForm.controls['longUrl'].invalid && longUrlForm.controls['longUrl'].touched">
+                Invalid URL
+            </span>
+        </div>
+
+        <div>
+            <label for="ttlMinutes">Expiry Time:</label>
+            <select id="ttlMinutes" formControlName="ttlMinutes">
+                <option value="5">5 hrs</option>
+                <option value="10">10 hrs</option>
+                <option value="24">24 hrs</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="alias">Custom Alias (optional):</label>
+            <input id="alias" type="text" formControlName="alias" />
+        </div>
+
+        <button type="submit" [disabled]="longUrlForm.invalid">Shorten</button>
+    </form>
+
+    <div *ngIf="shortUrl" class="result-container">
+        <p><strong>Short URL:</strong> <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a></p>
+    </div>
+</div>

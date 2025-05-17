@@ -21,6 +21,12 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/register`, registerData);
   }
 
+  getToken(): string {
+    const token = localStorage.getItem('token');
+    if (token) return token;
+    return "";
+  }
+
   logout(): void {
     localStorage.removeItem('token');
   }
