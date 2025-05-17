@@ -1,0 +1,43 @@
+.login-container {
+    width: 300px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background: rgb(124, 51, 221);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    background: grey;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.url-holder {
+    text-align: center;
+    font-size: small;
+}
