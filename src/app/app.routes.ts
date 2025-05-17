@@ -2,10 +2,12 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AlreadyLoggedInGuard } from './guards/already-logged-in.guard';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'home', component: HomeComponent },
+    { path: 'login', component: LoginComponent, canActivate: [AlreadyLoggedInGuard] },
+    { path: 'register', component: RegisterComponent, canActivate: [AlreadyLoggedInGuard] },
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
