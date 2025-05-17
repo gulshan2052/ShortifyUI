@@ -1,4 +1,7 @@
 <div class="navbar">
     <div class="title">Shortify</div>
-    <div class="nav-item">Login</div>
+    <div class="nav-actions">
+        <button class="nav-button" *ngIf="!authService.isLoggedIn()" (click)="navigateToLogin()">Login</button>
+        <button class="nav-button logout" *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</button>
+    </div>
 </div>

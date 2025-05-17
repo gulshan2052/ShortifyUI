@@ -6,6 +6,7 @@
     background-color: rgb(92, 173, 54);
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .title {
@@ -15,6 +16,41 @@
     font-size: larger;
 }
 
-.nav-item {
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 100%;
     padding: 1rem;
+}
+
+.nav-button {
+    padding: 4px 12px;
+    background-color: white;
+    color: #4a148c;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    font-size: 14px;
+}
+
+.nav-button:hover {
+    background-color: #e1bee7;
+}
+
+.nav-button.logout {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.nav-button.logout:hover {
+    background-color: #b71c1c;
 }
