@@ -4,13 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { UrlData } from '../interfaces/urlData.interface';
 import { AuthService } from './auth.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UrlshortenerService {
 
-  private baseUrl = 'http://localhost:8080/api/v1';
+  private baseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

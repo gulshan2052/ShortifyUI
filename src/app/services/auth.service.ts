@@ -3,22 +3,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginData } from '../interfaces/loginData.interface';
 import { RegisterData } from '../interfaces/registerData.interface';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/auth';
+  private baseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
   login(loginData: LoginData): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/login`, loginData);
+    return this.http.post<any>(`${this.baseUrl}/auth/login`, loginData);
   }
 
   register(registerData: RegisterData): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/register`, registerData);
+    return this.http.post<any>(`${this.baseUrl}/auth/register`, registerData);
   }
 
   getToken(): string {
