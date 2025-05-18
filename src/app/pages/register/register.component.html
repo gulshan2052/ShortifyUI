@@ -5,7 +5,8 @@
         <div>
             <label for="firstname">Firstname:</label>
             <input id="firstname" type="text" formControlName="firstname" />
-            <span class="error" *ngIf="registerForm.controls['firstname'].invalid && registerForm.controls['firstname'].touched">
+            <span class="error"
+                *ngIf="registerForm.controls['firstname'].invalid && registerForm.controls['firstname'].touched">
                 Firstname is required
             </span>
         </div>
@@ -13,7 +14,8 @@
         <div>
             <label for="lastname">Lastname:</label>
             <input id="lastname" type="text" formControlName="lastname" />
-            <span class="error" *ngIf="registerForm.controls['lastname'].invalid && registerForm.controls['lastname'].touched">
+            <span class="error"
+                *ngIf="registerForm.controls['lastname'].invalid && registerForm.controls['lastname'].touched">
                 Lastname is required
             </span>
         </div>
@@ -21,7 +23,8 @@
         <div>
             <label for="email">Email:</label>
             <input id="email" type="email" formControlName="email" />
-            <span class="error" *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
+            <span class="error"
+                *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched">
                 Invalid Email
             </span>
         </div>
@@ -29,8 +32,18 @@
         <div>
             <label for="password">Password:</label>
             <input id="password" type="password" formControlName="password" />
-            <span class="error" *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
+            <span class="error"
+                *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
                 Password must be at least 6 characters
+            </span>
+        </div>
+
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input id="confirmPassword" type="password" formControlName="confirmPassword" />
+            <span class="error"
+                *ngIf="registerForm.hasError('passwordsMismatch') && registerForm.get('confirmPassword')?.touched">
+                Passwords do not match
             </span>
         </div>
 
