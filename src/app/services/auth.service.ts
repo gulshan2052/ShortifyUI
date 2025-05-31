@@ -10,16 +10,16 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {
 
-  private baseUrl = environment.apiBaseUrl;
+  private apiBaseUrl = environment.baseUrl + environment.apiPath;
 
   constructor(private http: HttpClient) { }
 
   login(loginData: LoginData): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/auth/login`, loginData);
+    return this.http.post<any>(`${this.apiBaseUrl}/auth/login`, loginData);
   }
 
   register(registerData: RegisterData): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/auth/register`, registerData);
+    return this.http.post<any>(`${this.apiBaseUrl}/auth/register`, registerData);
   }
 
   getToken(): string {

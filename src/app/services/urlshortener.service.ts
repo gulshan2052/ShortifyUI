@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 })
 export class UrlshortenerService {
 
-  private baseUrl = environment.apiBaseUrl;
+  private apiBaseUrl = environment.baseUrl + environment.apiPath;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -20,7 +20,7 @@ export class UrlshortenerService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post<any>(`${this.baseUrl}/shorten`, urlData, { headers });
+    return this.http.post<any>(`${this.apiBaseUrl}/shorten`, urlData, { headers });
   }
 
 }

@@ -1,6 +1,7 @@
 export const environment = {
     production: false,
-    apiBaseUrl: 'http://localhost:8080/api/v1',
+    baseUrl: 'http://localhost:8080',
+    apiPath: '/api/v1',
     featureFlag: true,
     appName: 'Shortify'
 };
