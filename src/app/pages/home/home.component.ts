@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { UrlData } from '../../interfaces/urlData.interface';
 import { UrlshortenerService } from '../../services/urlshortener.service';
 
@@ -11,14 +11,17 @@ import { UrlshortenerService } from '../../services/urlshortener.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+
+  reservedValues = ['home', 'login', 'register'];
+
   longUrlForm: FormGroup;
   shortUrl: string | null = null;
 
   constructor(private fb: FormBuilder, private urlshortenerService: UrlshortenerService) {
     this.longUrlForm = this.fb.group({
       longUrl: ['', [Validators.required, Validators.pattern('https?://.+')]],
-      ttlMinutes: ['5'],
-      alias: ['']
+      ttlMinutes: ['300'],
+      alias: ['', [this.valueNotReserved(this.reservedValues)]]
     });
   }
 
@@ -28,8 +31,13 @@ export class HomeComponent {
       const urlData: UrlData = this.longUrlForm.value;
       this.urlshortenerService.shorten(urlData).subscribe(
         (response) => {
-          this.shortUrl = response.shortUrl;
-          alert(response.message);
+          if (response.status == 1) {
+            this.shortUrl = window.location.origin + "/" + response.alias;
+            alert(response.message);
+          }
+          else {
+            alert(response.message);
+          }
         },
         (error) => {
           alert(error.message);
@@ -40,4 +48,14 @@ export class HomeComponent {
       alert("Invalid details entered");
     }
   }
+
+  valueNotReserved(reservedValues: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.value) {
+        return null;
+      }
+      return !(reservedValues.includes(control.value)) ? null : { valueNotAllowed: true };
+    };
+  }
+
 }

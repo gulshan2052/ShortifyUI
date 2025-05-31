@@ -14,15 +14,19 @@
         <div>
             <label for="ttlMinutes">Expiry Time:</label>
             <select id="ttlMinutes" formControlName="ttlMinutes">
-                <option value="5">5 hrs</option>
-                <option value="10">10 hrs</option>
-                <option value="24">24 hrs</option>
+                <option value="300">5 hrs</option>
+                <option value="600">10 hrs</option>
+                <option value="1440">24 hrs</option>
             </select>
         </div>
 
         <div>
             <label for="alias">Custom Alias (optional):</label>
             <input id="alias" type="text" formControlName="alias" />
+            <span class="error"
+                *ngIf="longUrlForm.controls['alias'].value && longUrlForm.controls['alias'].invalid && longUrlForm.controls['alias'].touched">
+                Alias is reserved, try something else
+            </span>
         </div>
 
         <button type="submit" [disabled]="longUrlForm.invalid">Shorten</button>
