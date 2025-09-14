@@ -3,16 +3,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginData } from '../interfaces/loginData.interface';
 import { RegisterData } from '../interfaces/registerData.interface';
-import { environment } from '../environments/environment';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiBaseUrl = environment.baseUrl + environment.apiPath;
+  private apiBaseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private configService: ConfigService) {
+    this.apiBaseUrl = this.configService.get('baseUrl') + this.configService.get('apiPath');
+  }
 
   login(loginData: LoginData): Observable<any> {
     return this.http.post<any>(`${this.apiBaseUrl}/auth/login`, loginData);
